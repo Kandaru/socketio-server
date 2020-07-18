@@ -1,10 +1,12 @@
+const addr = [];
+
+require('dns').lookup(require('os').hostname(), function (err, add, fam) {
+  addr.push(add);
+});
+
 const server = require('http').createServer();
 const io = require('socket.io')(server, {wsEngine: "ws"});
 const User = require("./classes/User");
-
-require('dns').lookup(require('os').hostname(), function (err, add, fam) {
-  console.log('addr: '+add);
-});
 
 console.log("Server started");
 console.log("");
@@ -113,4 +115,6 @@ io.on('connect', socket => {
 
 });
 
-server.listen(3000);
+server.listen(3000, addr[0], () => {
+  console.log(`Server started on http://${addr[0]}:3000`);
+});
