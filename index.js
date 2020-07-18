@@ -1,8 +1,8 @@
-const addr = [];
+const os = require( 'os' );
 
-require('dns').lookup(require('os').hostname(), function (err, add, fam) {
-  addr.push(add);
-});
+const networkInterfaces = os.networkInterfaces( );
+
+const addr = Object.values(networkInterfaces)[0][0].address;
 
 const server = require('http').createServer();
 const io = require('socket.io')(server, {wsEngine: "ws"});
@@ -115,6 +115,6 @@ io.on('connect', socket => {
 
 });
 
-server.listen(3000, addr[0], () => {
-  console.log(`Server started on http://${addr[0]}:3000`);
+server.listen(3000, addr, () => {
+  console.log(`Server started on http://${addr}:3000`);
 });
