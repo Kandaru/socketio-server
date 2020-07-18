@@ -2,6 +2,8 @@ const os = require( 'os' );
 
 const networkInterfaces = os.networkInterfaces( );
 
+console.log(networkInterfaces);
+
 const addr = Object.values(networkInterfaces)[0][0].address;
 
 const server = require('http').createServer();
