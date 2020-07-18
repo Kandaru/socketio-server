@@ -2,6 +2,10 @@ const server = require('http').createServer();
 const io = require('socket.io')(server, {wsEngine: "ws"});
 const User = require("./classes/User");
 
+require('dns').lookup(require('os').hostname(), function (err, add, fam) {
+  console.log('addr: '+add);
+});
+
 console.log("Server started");
 console.log("");
 
