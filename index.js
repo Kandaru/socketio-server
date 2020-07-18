@@ -4,7 +4,7 @@ const networkInterfaces = os.networkInterfaces( );
 
 console.log(networkInterfaces);
 
-const addr = Object.values(networkInterfaces)[0][0].address;
+const addr = networkInterfaces.eth0[0].address;
 
 const server = require('http').createServer();
 const io = require('socket.io')(server, {wsEngine: "ws"});
