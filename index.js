@@ -1,4 +1,9 @@
-const server = require('http').createServer();
+const requestListener = function (req, res) {
+  res.writeHead(200);
+  res.end("My first server!");
+}
+
+const server = require('http').createServer(requestListener);
 const io = require('socket.io')(server, {wsEngine: "ws"});
 const User = require("./classes/User");
 
@@ -108,5 +113,8 @@ io.on('connect', socket => {
   }
 
 });
+
+
+
 
 server.listen(3000);
