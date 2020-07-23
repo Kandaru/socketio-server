@@ -1,11 +1,3 @@
-const os = require( 'os' );
-
-const networkInterfaces = os.networkInterfaces( );
-
-console.log(networkInterfaces);
-
-const addr = networkInterfaces.eth0[0].address;
-
 const server = require('http').createServer();
 const io = require('socket.io')(server, {wsEngine: "ws"});
 const User = require("./classes/User");
@@ -117,6 +109,4 @@ io.on('connect', socket => {
 
 });
 
-server.listen(3000, addr, () => {
-  console.log(`Server started on http://${addr}:3000`);
-});
+server.listen(8080);
